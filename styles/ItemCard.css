@@ -1,0 +1,14 @@
+.cust-item-card {
+  display: block;
+}
+.cust-item-card h1 {
+  font-size: 1rem;
+}
+.cust-item-card h2 {
+  font-size: 1rem;
+}
+.cust-item-card p {
+  font-size: 0.75rem;
+}
+
+/*# sourceMappingURL=ItemCard.css.map */
