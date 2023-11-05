@@ -11,6 +11,9 @@ export default function InfiniteScrollTable({src}:{src:string}){
 	</QueryClientProvider>
 	);
 }
+interface productType{
+	title:string,image:string,price:number,category:string,description:string,
+}
 function RQInfiniteScrollTable({src}:{src:string}){
 	const [page,setPage] = useState(1);
 	const [pageData,setPageData]:[pageData:Array<object>,setPageData:any] = useState([]);
@@ -26,16 +29,17 @@ function RQInfiniteScrollTable({src}:{src:string}){
 	},[pageData]);
 
 	const products:Array<React.ReactNode> = [];
-	pageData.forEach((node,index):void=>{
+	// @ts-ignore
+	pageData.forEach(({title,image,price,category,description},index):void=>{
 		products.push(
 		<div key={index} className={"infinite-item-card"}>
 			<div className={"w-full h-64 relative"}>
-				<Image src={node.image} alt={node.title} layout={"fill"} objectPosition={"cover"} objectFit={"cover"}/>
+				<Image src={image} alt={title} layout={"fill"} objectPosition={"cover"} objectFit={"cover"}/>
 			</div>
-			<h1>{node.title}</h1>
-			<p>{node.price}</p>
-			<p>{node.category}</p>
-			<p>{node.description}</p>
+			<h1>{title}</h1>
+			<p>{price}</p>
+			<p>{category}</p>
+			<p>{description}</p>
 		</div>
 		);
 	});
