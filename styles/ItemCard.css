@@ -1,3 +1,9 @@
+/*BOX*/
+/*FLEX TOOLKIT*/
+/*FONT*/
+/*BACKGROUND*/
+/*PSEUDO*/
+/*FADE*/
 .cust-item-card {
   display: block;
 }
@@ -9,6 +15,17 @@
 }
 .cust-item-card p {
   font-size: 0.75rem;
+}
+
+.infinite-item-card {
+  width: 100%;
+  height: fit-content;
+  padding: 0 10rem 2rem 10rem;
+}
+@media only screen and (max-width: 500px) {
+  .infinite-item-card {
+    padding: 1rem 1rem 1rem 1rem;
+  }
 }
 
 /*# sourceMappingURL=ItemCard.css.map */

@@ -1,7 +1,9 @@
 'use client';//CSR
 import {QueryClient, QueryClientProvider, useQuery} from "react-query";
-import {useCallback, useEffect, useRef, useState} from "react";
+import React, {useCallback, useEffect, useRef, useState} from "react";
+import Image from "next/image";
 const queryClient = new QueryClient();
+
 export default function InfiniteScrollTable({src}:{src:string}){
 	return(
 	<QueryClientProvider client={queryClient}>
@@ -9,28 +11,38 @@ export default function InfiniteScrollTable({src}:{src:string}){
 	</QueryClientProvider>
 	);
 }
-
 function RQInfiniteScrollTable({src}:{src:string}){
 	const [page,setPage] = useState(1);
-	const [pageData,setPageData] = useState([]);
-	// @ts-ignore
-	const loadMore = useCallback(()=>{
+	const [pageData,setPageData]:[pageData:Array<object>,setPageData:any] = useState([]);
+
+	const loadMore = useCallback(async () => {
 		const new_page = page + 1;
 		setPage(new_page);
-		const buffer = [...pageData];
-		buffer.push(
-		// @ts-ignore
-		<div className={"h-40 w-full bg-purple-700 my-4 p-4"}>
-			<h1 className={"text-2xl"}>{page.toString()}</h1>
-			<p>{"this is items"}</p>
+		const buffer: Array<object> = [...pageData];
+		const moreData = await fetch([src,new_page].join("/").trim());
+		const moreData_json = await moreData.json();
+		buffer.push(moreData_json);
+		setPageData(buffer);
+	},[pageData]);
+
+	const products:Array<React.ReactNode> = [];
+	pageData.forEach((node,index):void=>{
+		products.push(
+		<div key={index} className={"infinite-item-card"}>
+			<div className={"w-full h-64 relative"}>
+				<Image src={node.image} alt={node.title} layout={"fill"} objectPosition={"cover"} objectFit={"cover"}/>
+			</div>
+			<h1>{node.title}</h1>
+			<p>{node.price}</p>
+			<p>{node.category}</p>
+			<p>{node.description}</p>
 		</div>
 		);
-		setPageData(buffer);
-	},[pageData,page]);
+	});
 	return(
-	<div className={"w-full"}>
-		<div>{pageData}</div>
-		{/*스크롤러가 비정삭적으로 리렌더되는 것을 막기위해 관계를 분리합니다.*/}
+	<div className={"w-full grid justify-items-center"}>
+		<h1 className={"text-2xl w-fit my-8"}>{"Infinite Scroller"}</h1>
+		<div className={"grid"}>{products}</div>
 		<InfiniteScroller loadMore={loadMore}/>
 	</div>
 	);

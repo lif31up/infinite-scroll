@@ -8,5 +8,12 @@ export default async function NotableItems({src}: { src: string }) {
 	for(let i = 0; i < 6; i++){
 		notableItems.push(<ItemCard id={json[i].id} title={json[i].title} desc={json[i].description} category={json[i].category} image={json[i].image} rating={json[i].rating}/>);
 	}
-	return (<div className={"cust-notable-items"}>{notableItems}</div>);
+	return (
+	<>
+		<h1 className={"text-2xl"}>{"Notable Items"}</h1>
+		<div className={"cust-notable-items"}>
+			{notableItems}
+		</div>
+	</>
+	);
 }
