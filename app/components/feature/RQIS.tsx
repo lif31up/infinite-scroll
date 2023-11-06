@@ -13,6 +13,7 @@ export default function RQIS({src}:{src:string}){
 	);
 }
 const fetcher = async (endpoint:string,index:number) => {
+	if(index <= 0){console.log("scroller got inited"); return undefined;}
 	try {
 		const response = await fetch([endpoint,index].join("/").trim());
 		const data = await response.json();
@@ -30,10 +31,11 @@ function _RQIS({src}:{src:string}){
 		onSuccess:(data)=>{
 			queryStackRef.current.push(<RQIS_ItemCard key={latestIndex} data={data}/>);
 			setChange(!change);
-		}
+		},
+		staleTime: 0,
 	});
 	const loadMore = useCallback(async ()=>{
-		const new_latestIndex = latestIndex + 1; console.log(latestIndex);
+		const new_latestIndex = latestIndex + 1;
 		setLatestIndex(new_latestIndex);
 	},[change]);
 	return(
