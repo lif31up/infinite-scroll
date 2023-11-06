@@ -1,6 +1,7 @@
 'use client';
 import {QueryClient, QueryClientProvider, useQuery} from "react-query";
 import React, {useCallback, useEffect, useRef, useState} from "react";
+import Image from "next/image";
 
 const queryClient = new QueryClient();
 export default function RQIS({src}:{src:string}){
@@ -15,27 +16,25 @@ const fetcher = async (endpoint:string,index:number) => {
 		const response = await fetch([endpoint,index].join("/").trim());
 		const data = await response.json();
 		return data;
-	} catch (error) {
-		throw new Error('Failed to fetch data');
-	}
+	}catch(error){throw new Error('Failed to fetch data');}
 };
 function _RQIS({src}:{src:string}){
-	//latestIndex는 요청해야 할 물건의 색인입니다.
+	//latestIndex는 useQurey를 발화합니다.
 	const [latestIndex,setLatestIndex] = useState(0);
-	const [onChange,setOnChange] = useState(false);
+	//change는 useCallback을 발화합니다.
+	const [change,setChange] = useState(false);
+	//uqeryStackRef는 스택을 저장합니다.
 	const queryStackRef:any = useRef([]);
 	const {data,isLoading,isError} = useQuery(["data",src,latestIndex],()=>fetcher(src,latestIndex),{
 		onSuccess:(data)=>{
 			queryStackRef.current.push(<RQIS_ItemCard key={latestIndex} data={data}/>);
-			setOnChange(!onChange);
+			setChange(!change);
 		}
 	});
-
 	const loadMore = useCallback(async ()=>{
 		const new_latestIndex = latestIndex + 1; console.log(latestIndex);
 		setLatestIndex(new_latestIndex);
-	},[onChange]);
-
+	},[change]);
 	return(
 	<div className={""}>
 		<div>{queryStackRef.current}</div>
@@ -63,7 +62,10 @@ function InfiniteScroller({loadMore}:{loadMore:any}){
 function RQIS_ItemCard({data}:{data:any}){
 	if(data === undefined){return(<></>);}
 	return(
-	<div className={"h-40"}>
+	<div className={"cust-notable-items"}>
+		<div className={"w-40 h-40 relative"}>
+			<Image src={data.image} alt={data.title} layout={"fill"}/>
+		</div>
 		<h1>{data.title}</h1>
 		<p>{data.price.toString()}</p>
 	</div>
