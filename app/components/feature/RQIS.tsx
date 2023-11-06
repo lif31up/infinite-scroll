@@ -2,6 +2,7 @@
 import {QueryClient, QueryClientProvider, useQuery} from "react-query";
 import React, {useCallback, useEffect, useRef, useState} from "react";
 import Image from "next/image";
+import "@/styles/RQIS.css";
 
 const queryClient = new QueryClient();
 export default function RQIS({src}:{src:string}){
@@ -36,7 +37,7 @@ function _RQIS({src}:{src:string}){
 		setLatestIndex(new_latestIndex);
 	},[change]);
 	return(
-	<div className={""}>
+	<div className={"custom-RQIS"}>
 		<div>{queryStackRef.current}</div>
 		<InfiniteScroller loadMore={loadMore}/>
 	</div>
@@ -62,12 +63,14 @@ function InfiniteScroller({loadMore}:{loadMore:any}){
 function RQIS_ItemCard({data}:{data:any}){
 	if(data === undefined){return(<></>);}
 	return(
-	<div className={"cust-notable-items"}>
+	<div className={"custom-RQIS-item-card"}>
 		<div className={"w-40 h-40 relative"}>
 			<Image src={data.image} alt={data.title} layout={"fill"}/>
 		</div>
-		<h1>{data.title}</h1>
-		<p>{data.price.toString()}</p>
+		<div>
+			<h1>{data.title}</h1>
+			<p>{data.price.toString()}</p>
+		</div>
 	</div>
 	);
 }

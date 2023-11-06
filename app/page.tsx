@@ -1,5 +1,4 @@
 import NotableItems from "@/app/components/feature/NotableItems";
-import InfiniteScrollTable from "@/app/components/feature/InfiniteScrollering";
 import RQIS from "@/app/components/feature/RQIS";
 
 export default function Home() {
