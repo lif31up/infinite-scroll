@@ -3,7 +3,6 @@ import {QueryClient, QueryClientProvider, useQuery} from "react-query";
 import React, {useCallback, useEffect, useRef, useState} from "react";
 import Image from "next/image";
 const queryClient = new QueryClient();
-
 export default function InfiniteScrollTable({src}:{src:string}){
 	return(
 	<QueryClientProvider client={queryClient}>
@@ -22,10 +21,12 @@ function RQInfiniteScrollTable({src}:{src:string}){
 		const new_page = page + 1;
 		setPage(new_page);
 		const buffer: Array<object> = [...pageData];
-		const moreData = await fetch([src,new_page].join("/").trim());
-		const moreData_json = await moreData.json();
+		let moreData:Response|null = await fetch([src,new_page].join("/").trim());
+		let moreData_json:object|null = await moreData.json();
+		if(moreData_json === null){return;}
 		buffer.push(moreData_json);
 		setPageData(buffer);
+		return ()=>{moreData = null; moreData_json = null;};
 	},[pageData]);
 
 	const products:Array<React.ReactNode> = [];
