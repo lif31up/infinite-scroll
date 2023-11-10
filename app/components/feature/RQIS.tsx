@@ -12,13 +12,19 @@ export default function RQIS({src}:{src:string}){
 	</QueryClientProvider>
 	);
 }
+// 리액트 쿼리에 사용될 패치함수를 정의합니다.
 const fetcher = async (endpoint:string,index:number) => {
-	if(index <= 0){console.log("scroller got inited"); return undefined;}
+	if(index <= 0){//색인의 가장 처음 시작입니다. 이 과정에서 해당 요소는 서버의 상태를 확인합니다.
+		const serverRes = await fetch(endpoint);
+		const serverStat = await serverRes.json();
+		if(serverStat.ok){return null;}
+		else{throw new Error("Server-side Error");}
+	}
 	try {
 		const response = await fetch([endpoint,index].join("/").trim());
 		const data = await response.json();
 		return data;
-	}catch(error){throw new Error('Failed to fetch data');}
+	}catch(error){return error;}
 };
 function _RQIS({src}:{src:string}){
 	//latestIndex는 useQurey를 발화합니다.
@@ -29,14 +35,19 @@ function _RQIS({src}:{src:string}){
 	const queryStackRef:any = useRef([]);
 	const {data,isLoading,isError} = useQuery(["data",src,latestIndex],()=>fetcher(src,latestIndex),{
 		onSuccess:(data)=>{
+			if(data === null){return;}
 			queryStackRef.current.push(<RQIS_ItemCard key={latestIndex} data={data}/>);
 			setChange(!change);
 		},
+		onError:(error:Error)=>{
+			console.log(error.message);
+		},
 		staleTime: 0,
 	});
+	//fetching이 성공할 때마다 새롭게 함수를 정의합니다. 이 함수는 infiniteScroller의 콜백 함수로 사용됩니다.
 	const loadMore = useCallback(async ()=>{
 		const new_latestIndex = latestIndex + 1;
-		setLatestIndex(new_latestIndex);
+		setLatestIndex(new_latestIndex);//색인을 갱신합니다.
 	},[change]);
 	return(
 	<div className={"custom-RQIS"}>
