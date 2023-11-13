@@ -100,7 +100,7 @@ $desktop: 1280;
     visibility: hidden;
     opacity: 0;
     transition: visibility 1s, opacity 1s;
-  } @else if $type== "show" {
+  } @else if $type == "show" {
     visibility: visible;
     opacity: 1;
     transition: visibility 1s, opacity 1s;

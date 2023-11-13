@@ -1,11 +1,11 @@
 @import "Library";
-.cust-item-card{
+.custom-item-card{
   display: block;
   h1{font-size: 1rem;}
   h2{font-size: 1rem;}
   p{font-size: 0.75rem;}
 }
-.infinite-item-card{
+.custom-item-card-infinite{
   width: 100%; height: fit-content;
   padding: 0 10rem 2rem 10rem;
   @include mobile{

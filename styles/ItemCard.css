@@ -4,26 +4,26 @@
 /*BACKGROUND*/
 /*PSEUDO*/
 /*FADE*/
-.cust-item-card {
+.custom-item-card {
   display: block;
 }
-.cust-item-card h1 {
+.custom-item-card h1 {
   font-size: 1rem;
 }
-.cust-item-card h2 {
+.custom-item-card h2 {
   font-size: 1rem;
 }
-.cust-item-card p {
+.custom-item-card p {
   font-size: 0.75rem;
 }
 
-.infinite-item-card {
+.custom-item-card-infinite {
   width: 100%;
   height: fit-content;
   padding: 0 10rem 2rem 10rem;
 }
 @media only screen and (max-width: 500px) {
-  .infinite-item-card {
+  .custom-item-card-infinite {
     padding: 1rem 1rem 1rem 1rem;
   }
 }

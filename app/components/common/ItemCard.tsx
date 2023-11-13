@@ -4,7 +4,7 @@ import "@/styles/ItemCard.css";
 interface ItemCardProps{id:number,title:string,desc:string,category:string,image:string,rating:RatingProps}
 export default function ItemCard({id,title,desc,category,image,rating}:ItemCardProps){
 	return(
-	<div className={"cust-item-card"}>
+	<div className={"custom-item-card"}>
 		<div className={"w-full h-64 relative"}>
 			<Image src={image} alt={title} layout={"fill"} objectPosition={"cover"} objectFit={"cover"}/>
 		</div>
