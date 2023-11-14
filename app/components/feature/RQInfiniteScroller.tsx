@@ -68,7 +68,7 @@ function RQIS_ItemCard({data}:{data:FakeStoreProduct}){
 	<div className={"custom-RQIS-item-card"}>
 		<div className={"w-40 h-40 relative object-cover"}>
 			<Image src={data.image} alt={data.title}
-						 width={"1"} height={"1"} sizes={"150px"} className={"w-full h-full"}/>
+						 width={"0"} height={"0"} sizes={"150px"} className={"w-full h-full"}/>
 		</div>
 		<div>
 			<h1>{data.title}</h1>
