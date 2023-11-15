@@ -27,9 +27,8 @@ export default function FetchingInfiniteScroller({ src }: { src: string }) {
   }, [dataRef.current])
 
   const products: Array<React.ReactNode> = []
-  // @ts-ignore
   dataRef.current.forEach(
-    ({ title, image, price, category, description }, index: number): void => {
+    ({ title, image, price, category, description }:any, index):void => {
       products.push(
         <div key={index} className={'custom-item-card-infinite'}>
           <div className={'w-full h-64 relative'}>
