@@ -41,11 +41,7 @@ function InfiniteScroller({ src }: { src: string }) {
   const queryStackRef: MutableRefObject<Array<React.ReactNode>> = useRef([])
   const checkerRef: MutableRefObject<Array<string>> = useRef([])
   const [error, setError] = useState(false)
-  const {
-    data,
-    isLoading,
-    isError,
-  }: { data: any; isLoading: boolean; isError: boolean } = useQuery(
+  useQuery(
     ['data', src, latestIndex],
     () => fetcher(src, latestIndex),
     {
