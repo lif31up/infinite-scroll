@@ -1,41 +1,25 @@
 import Image from 'next/image'
 import { ReactNode } from 'react'
 import '@/styles/ItemCard.css'
-interface ItemCardProps {
-  id: number
-  title: string
-  desc: string
-  category: string
-  image: string
-  rating: RatingProps
+import { Default, Item, TailwindProperties } from '@/app/components/interface'
+
+export interface ItemCard extends Default {
+  data: Item
 }
-export default function ItemCard({
-  id,
-  title,
-  desc,
-  category,
-  image,
-  rating,
-}: ItemCardProps) {
+
+const style: TailwindProperties = {
+  lg: 'lg:flex lg:bg-gray',
+  md: 'md:flex md:bg-white',
+}
+
+export default function ItemCard({ data, className }: ItemCard) {
+  const { id, title, description, image, rating } = data
+  console.log(title)
   return (
-    <div className={'custom-item-card'}>
-      <div className={'w-full h-64 relative'}>
-        <Image
-          src={image}
-          alt={title}
-          layout={'fill'}
-          objectPosition={'cover'}
-          objectFit={'cover'}
-        />
-      </div>
-      <div>
-        <h1>{title}</h1>
-        <h2>{category}</h2>
-      </div>
-      <RatingStar rate={rating.rate} count={rating.count} />
-      <span>
-        <p>{desc}</p>
-      </span>
+    <div className={`w-full h-fit ${style.lg} ${style.md} ${className}`}>
+      <Image width={160} height={160} alt="image" src={image} />
+      <h1>{title}</h1>
+      <span>{id}</span>
     </div>
   )
 }
