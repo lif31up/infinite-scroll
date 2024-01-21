@@ -17,9 +17,21 @@ export default function ItemCard({ data, className }: ItemCard) {
   console.log(title)
   return (
     <div className={`w-full h-fit ${style.lg} ${style.md} ${className}`}>
-      <Image width={160} height={160} alt="image" src={image} />
-      <h1>{title}</h1>
-      <span>{id}</span>
+      <Image
+        sizes={'9rem'}
+        width={0}
+        height={0}
+        alt="image"
+        src={image}
+        className="object-cover h-40 w-40"
+      />
+      <div>
+        <h1 className="text-xl font-bold">
+          {title}
+          <span className="text-xs ml-2">{id}</span>
+        </h1>
+        <p>{description}</p>
+      </div>
     </div>
   )
 }

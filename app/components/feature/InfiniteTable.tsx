@@ -5,13 +5,15 @@ import InfiniteScroller from '@/app/components/feature/InfiniteScroller'
 import { Item } from '@/app/components/interface'
 import ItemCard from '@/app/components/common/ItemCard'
 
-const fetcher = async (endpoint: string, index: number): Promise<any> => {
+const fetcher = async (
+  endpoint: string,
+  index: number
+): Promise<Response | void> => {
   try {
     const response: Response = await fetch(`${endpoint}/${index}`)
     return await response.json()
-  } catch (e) {
-    console.log(e)
-    return false
+  } catch (error) {
+    console.warn(error)
   }
 }
 

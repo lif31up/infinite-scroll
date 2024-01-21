@@ -20,17 +20,21 @@ function InfiniteScroller({
     const intersectionHandler = (
       entries: Array<IntersectionObserverEntry>
     ): void => {
-      entries.forEach((entry: IntersectionObserverEntry): void => {
-        if (entry.isIntersecting) {
-          indexHandler()
-          if (observerRef.current) observerRef.current.disconnect()
+      entries.forEach(
+        (entry: IntersectionObserverEntry): void | (() => void) => {
+          if (entry.isIntersecting) {
+            indexHandler()
+            return (): void => {
+              if (observerRef.current) observerRef.current.disconnect()
+            }
+          }
         }
-      })
+      )
     }
     observerRef.current = new IntersectionObserver(intersectionHandler, options)
     if (!observerRef.current) return
     observerRef.current.observe(target)
   }, [indexHandler])
-  return <div className={`w-fill h-4 ${className}`} id={id} />
+  return <div className={`w-fill h-4 bg-black ${className}`} id={id} />
 }
 export default InfiniteScroller
