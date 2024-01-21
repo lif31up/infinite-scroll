@@ -4,7 +4,7 @@ import Link from 'next/link'
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between">
-      <header className="my-20 w-3/4 bg-white p-8 rounded-2xl shadow">
+      <header className="my-20 w-3/4 bg-white px-8 py-12 rounded-2xl shadow">
         <h2 className="text-sm font-extrabold text-neutral-500 tracking-widest">
           InfiniteTable.tsx, InfiniteScroller
         </h2>

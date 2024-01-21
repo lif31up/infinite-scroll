@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import '@/styles/ItemCard.css'
 import { Default, Item, TailwindProperties } from '@/app/components/interface'
 
 export interface ItemCard extends Default {
