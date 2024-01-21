@@ -1,28 +1,36 @@
 'use client'
+import React from 'react'
 import { MutableRefObject, useEffect, useRef } from 'react'
 import { Default } from '@/app/components/interface'
 
-const id: string = 'ifsc'
+const id: string = 'infinite-scroller--0'
 interface IntersectionListener extends Default {
-  indexHandler: any
+  indexHandler: () => void
 }
-function InfiniteScroller({ indexHandler, className }: IntersectionListener) {
+function InfiniteScroller({
+  indexHandler,
+  className,
+}: IntersectionListener): React.JSX.Element {
   const observerRef: MutableRefObject<IntersectionObserver | null> =
     useRef(null)
   const options: object = { root: null, rootMargin: '0px', threshold: 1 }
   useEffect((): void => {
     const target: HTMLElement | null = document.getElementById(id)
     if (!target) return
-    const intersectionHandler = (entries: any): void => {
+    const intersectionHandler = (
+      entries: Array<IntersectionObserverEntry>
+    ): void => {
       entries.forEach((entry: IntersectionObserverEntry): void => {
-        if (entry.isIntersecting) indexHandler()
+        if (entry.isIntersecting) {
+          indexHandler()
+          if (observerRef.current) observerRef.current.disconnect()
+        }
       })
     }
     observerRef.current = new IntersectionObserver(intersectionHandler, options)
     if (!observerRef.current) return
     observerRef.current.observe(target)
-    observerRef.current.disconnect()
   }, [indexHandler])
-  return <div className={`w-fill h-20 bg-black ${className}`} id={id} />
+  return <div className={`w-fill h-4 ${className}`} id={id} />
 }
 export default InfiniteScroller

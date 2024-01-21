@@ -23,39 +23,40 @@ export default function InfiniteTable({ src }: { src: string }) {
     </QueryClientProvider>
   )
 }
-export let lastIndex = 1
 
 function Table({ src }: { src: string }) {
-  const [change, setChange]: [
-    change: boolean,
-    setChange: React.Dispatch<React.SetStateAction<boolean>>
-  ] = useState(false)
-  const stackRef: MutableRefObject<Array<React.ReactNode>> = useRef([])
+  const [index, setIndex]: [
+    change: number,
+    setChange: React.Dispatch<React.SetStateAction<number>>
+  ] = useState(1)
+  const stackRef: MutableRefObject<Array<React.JSX.Element>> = useRef([])
   const checkRef: MutableRefObject<Array<number>> = useRef([0])
 
-  useQuery(['data', src, lastIndex], () => fetcher(src, lastIndex), {
+  useQuery(['fakestore', src, index], () => fetcher(src, index), {
     onSuccess: (data: Item): void | undefined => {
-      if (checkRef.current.includes(data.id)) return
+      const buffer: number = index + 1
+      if (checkRef.current.includes(data.id)) setIndex(buffer)
       checkRef.current.push(data.id)
-      stackRef.current.push(<ItemCard key={lastIndex} data={data} />)
-      const buffer: boolean = !change
-      setChange(buffer)
+      stackRef.current.push(<ItemCard key={data.id} data={data} />)
+      setIndex(buffer)
     },
     onError: (error: Error): void => {
-      console.warn(error.message)
-      const buffer: boolean = !change
-      setChange(buffer)
+      const buffer: number = index + 1
+      setIndex(buffer)
     },
     staleTime: 1000,
   })
 
   const indexHandler = useCallback((): void => {
-    lastIndex++
-  }, [change])
+    console.log(index)
+    if (index === 0) return
+    const buffer: number = index + 1
+    setIndex(buffer)
+  }, [index])
 
   return (
     <div className={'w-full grid'}>
-      <>{stackRef.current}</>
+      <section>{stackRef.current}</section>
       <InfiniteScroller indexHandler={indexHandler} />
     </div>
   )
