@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import { ReactNode } from 'react'
 import '@/styles/ItemCard.css'
 import { Default, Item, TailwindProperties } from '@/app/components/interface'
 
@@ -8,41 +7,49 @@ export interface ItemCard extends Default {
 }
 
 const style: TailwindProperties = {
-  lg: 'lg:flex lg:bg-gray',
-  md: 'md:flex md:bg-white',
+  lg: 'lg:flex lg:bg-white lg:p-4',
+  md: 'md:flex md:bg-white md:p-4',
 }
 
 export default function ItemCard({ data, className }: ItemCard) {
-  const { id, title, description, image, rating } = data
-  console.log(title)
+  const { id, title, description, price, image, rating } = data
   return (
-    <div className={`w-full h-fit ${style.lg} ${style.md} ${className}`}>
-      <Image
-        sizes={'9rem'}
-        width={0}
-        height={0}
-        alt="image"
-        src={image}
-        className="object-cover h-40 w-40"
-      />
-      <div>
-        <h1 className="text-xl font-bold">
+    <div
+      className={`w-full h-fit shadow rounded-2xl ${style.lg} ${style.md} ${className}`}
+    >
+      <div className="flex-wrap h-40 w-40 relative">
+        <Image sizes={`100px`} src={image} alt="image" fill />
+      </div>
+      <div className="w-full flex-wrap ml-4">
+        <h1 className="text-2xl text-gray-700 font-bold">
           {title}
           <span className="text-xs ml-2">{id}</span>
         </h1>
-        <p>{description}</p>
+        <h2 className="text-base font-extrabold text-neutral-900 mt-2">
+          {'$ ' + price.toString()}
+        </h2>
+        <p className="text-md text-neutral-700 line-clamp-3">{description}</p>
+        <RatingStar rate={rating.rate} count={rating.count} className="mt-2" />
       </div>
     </div>
   )
 }
-interface RatingProps {
+interface RatingStar extends Default {
   rate: number
   count: number
 }
-function RatingStar({ rate, count }: RatingProps) {
-  const stars: Array<ReactNode> = []
-  for (let i = 0; i < rate; i++) {
-    stars.push(<div className={'cust-star'}>O</div>)
+function RatingStar({ rate, count, className }: RatingStar) {
+  const stars: Array<string> = []
+  let i: number
+  for (i = 0; i < rate; i++) {
+    stars.push('★')
   }
-  return <div className={'flex gap-1'}>{stars}</div>
+  for (i; i < 5; i++) {
+    stars.push('☆')
+  }
+  return (
+    <div className={`${className}`}>
+      {[stars.join(''), `(${count})`].join(' ')}
+    </div>
+  )
 }

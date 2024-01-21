@@ -23,10 +23,8 @@ function InfiniteScroller({
       entries.forEach(
         (entry: IntersectionObserverEntry): void | (() => void) => {
           if (entry.isIntersecting) {
+            if (observerRef.current) observerRef.current.disconnect()
             indexHandler()
-            return (): void => {
-              if (observerRef.current) observerRef.current.disconnect()
-            }
           }
         }
       )
