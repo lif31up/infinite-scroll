@@ -1,4 +1,4 @@
-import InfiniteTable from '@/app/components/feature/InfiniteTable'
+import InfiniteTable from '@/component/feature/InfiniteTable'
 import React from 'react'
 import Link from 'next/link'
 

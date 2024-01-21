@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import { MutableRefObject, useEffect, useRef } from 'react'
-import { Default } from '@/app/components/interface'
+import { Default } from '@/component/interface'
 
 const id: string = 'infinite-scroller--0'
 interface IntersectionListener extends Default {

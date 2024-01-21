@@ -1,9 +1,9 @@
 'use client'
 import { QueryClient, QueryClientProvider, useQuery } from 'react-query'
 import React, { MutableRefObject, useCallback, useRef, useState } from 'react'
-import InfiniteScroller from '@/app/components/feature/InfiniteScroller'
-import { Default, Item, TailwindProperties } from '@/app/components/interface'
-import ItemCard from '@/app/components/common/ItemCard'
+import InfiniteScroller from '@/component/feature/InfiniteScroller'
+import { Default, Item, TailwindProperties } from '@/component/interface'
+import ItemCard from '@/component/common/ItemCard'
 
 const fetcher = async (
   endpoint: string,

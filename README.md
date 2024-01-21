@@ -1,25 +1,14 @@
-# 쇼핑몰 레이아웃 구성하기
-
-더미 자료로 <a href="https:fakestoreapi.com">fakestore API</a>를 사용합니다.
-
-## 구현해야할 기술들
-
-다음은 이 프로젝트를 통해서 제가 달성해야하는 기능입니다.
-
-### 반응형 무한 스크롤
-
-`Intersection API`와 `React Query`를 이용해서 무한 스크롤을 구현해봅니다. 이떄 모든 스크린에 대해 반응할 수 있어야 합니다.
-
-### 장바구니에 담기
-
-CSR에서 Recoil을 사용해서 장바구니 기능을 구현합니다.
-
-### 아이템 카드 선택
-
-또 아이템 카드를 선택하면 그에 해당하는 정보를 가진 페이지를 다이나믹 라우팅하는 기능을 구현합니다.
+# 무한 스크롤링
+`react-query`, `observer`, `state`를 사용해서 신뢰할 수 있는 무한 스크롤러를 개발했습니다.
+## 웹사이트를 방문하기
+오른쪽의 리포지토리 설명에 기술되어있는 링크를 클릭해 해당 `next.js` 응용의 빌드를 확인합니다.
+## 요소를 확인하기
+웹사이트에 전시된 요소와 관련된 논리는 전부 `component`에 위치합니다.
 
 ---
-
-### 참고해야할 점
-
-해당 페이지는 미적인 스타일링을 전혀 고려하지 않습니다. 정렬 레이아웃에 대한 스타일시트만 사용합니다. 이 점을 참고하시고 둘러보시면 감사하겠습니다.
+# Animation Lab
+This repository is for developing and studying fetching and querying on React.
+## Visiting Website
+You can visit the website of this at the right in description section.
+## Checking the Components
+Check `component` to understand how the fetching worked!
