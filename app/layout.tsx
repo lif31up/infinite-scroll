@@ -6,8 +6,8 @@ import React from 'react'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'infinite Scroll',
-  description: 'with react query, javascript fetching',
+  title: '무한 스크롤러',
+  description: 'to learn ReactQuery',
 }
 
 export default function RootLayout({

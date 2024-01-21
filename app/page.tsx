@@ -1,7 +1,8 @@
 import InfiniteTable from '@/app/components/feature/InfiniteTable'
+import React from 'react'
 import Link from 'next/link'
 
-export default function Home() {
+export default function Home(): React.JSX.Element {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between">
       <header className="my-20 w-3/4 bg-white px-8 py-12 rounded-2xl shadow">
