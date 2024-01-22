@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { Default, Item, TailwindProperties } from '@/component/interface'
+import { Default, Item, TailwindProperties } from '@/util/interface'
 
 export interface ItemCard extends Default {
   data: Item

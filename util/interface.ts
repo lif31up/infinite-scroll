@@ -3,6 +3,7 @@ export interface Default {
   id?: string
   title?: string
 }
+
 export interface TailwindProperties {
   xl?: string
   lg?: string
