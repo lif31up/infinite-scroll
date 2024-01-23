@@ -17,7 +17,7 @@ export default function Home(): React.JSX.Element {
           FakeStore API란 오픈소스 서버에서 아이템을 요청해 전시합니다.
         </p>
         <Link
-          href="https://github.com/lif31up/shopping-mall/tree/main/app"
+          href="https://github.com/lif31up/infinite-scroll"
           className="px-4 py-4 bg-emerald-300 rounded text-white font-bold"
         >
           코드를 확인하세요
