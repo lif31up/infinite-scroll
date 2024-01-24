@@ -3,7 +3,7 @@ import ScrollerSection from '@/component/section/ScrollerSection'
 
 export default function Home(): React.JSX.Element {
   return (
-    <main>
+    <main className="bg-white">
       <ScrollerSection />
     </main>
   )
