@@ -8,7 +8,6 @@ export interface TailwindProperties {
   xl?: string
   lg?: string
   sm?: string
-  sm?: string
   base?: string
 }
 
