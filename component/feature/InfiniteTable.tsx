@@ -45,10 +45,7 @@ function Table({ src, className }: Table) {
   const buffer: number = index + 1
   useQuery(['fakestore', src, index], () => fetcher(src, index), {
     onSuccess: (data: Item): void | (() => void) => {
-      if (!data)
-        return (): void => {
-          console.log('free')
-        }
+      if (!data) return
       if (checkRef.current.includes(data.id)) {
       } else {
         checkRef.current.push(data.id)

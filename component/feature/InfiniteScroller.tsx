@@ -34,10 +34,13 @@ function InfiniteScroller({
     observerRef.current.observe(target)
   }, [indexHandler])
   return (
-    <div
-      className={`w-full h-4 bg-green-400 rounded-2xl ${className}`}
-      id={id}
-    />
+    <>
+      <div
+        className={`w-full h-6 bg-green-400 rounded-2xl text-center text-white font-bold pt-1 mb-8 ${className}`}
+        id={id}
+      />
+      <h1>더 이상 불러올 상품이 없습니다.</h1>
+    </>
   )
 }
 export default InfiniteScroller
