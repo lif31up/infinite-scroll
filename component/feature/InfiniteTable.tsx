@@ -11,6 +11,7 @@ const fetcher = async (
 ): Promise<Response | void> => {
   try {
     const response: Response = await fetch(`${endpoint}/${index}`)
+    if (!response) return
     return await response.json()
   } catch (error) {
     console.warn(error)
@@ -44,7 +45,10 @@ function Table({ src, className }: Table) {
   const buffer: number = index + 1
   useQuery(['fakestore', src, index], () => fetcher(src, index), {
     onSuccess: (data: Item): void | (() => void) => {
-      if (!data) return
+      if (!data)
+        return (): void => {
+          console.log('free')
+        }
       if (checkRef.current.includes(data.id)) {
       } else {
         checkRef.current.push(data.id)
@@ -60,14 +64,14 @@ function Table({ src, className }: Table) {
     staleTime: 1000,
   })
 
+  const style: TailwindProperties = {
+    sm: 'sm:w-full',
+    base: 'w-full',
+  }
   return (
-    <section className={`${style.lg} ${style.md} ${className}`}>
+    <section className={`${style.sm} ${style.base} ${className}`}>
       <ul className="grid gap-8">{stackRef.current}</ul>
       <InfiniteScroller indexHandler={indexHandler} className="mt-8" />
     </section>
   )
-}
-const style: TailwindProperties = {
-  lg: 'lg:px-60',
-  md: 'md:px-4',
 }

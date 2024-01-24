@@ -5,17 +5,14 @@ export interface ItemCard extends Default {
   data: Item
 }
 
-const style: TailwindProperties = {
-  lg: 'lg:flex lg:bg-white lg:p-4',
-  md: 'md:flex md:bg-white md:p-4',
-}
-
 export default function ItemCard({ data, className }: ItemCard) {
   const { id, title, description, price, image, rating } = data
+  const style: TailwindProperties = {
+    sm: 'sm:flex sm:w-full sm:bg-white sm:shadow',
+    base: 'w-full grid justify-items-center bg-white p-4',
+  }
   return (
-    <div
-      className={`w-full h-fit shadow rounded-2xl ${style.lg} ${style.md} ${className}`}
-    >
+    <div className={`${style.sm} ${style.base} ${className}`}>
       <div className="flex-wrap h-40 w-40 relative">
         <Image sizes={`100px`} src={image} alt="image" fill />
       </div>

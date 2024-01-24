@@ -33,6 +33,11 @@ function InfiniteScroller({
     if (!observerRef.current) return
     observerRef.current.observe(target)
   }, [indexHandler])
-  return <div className={`w-fill h-4 bg-black ${className}`} id={id} />
+  return (
+    <div
+      className={`w-full h-4 bg-green-400 rounded-2xl ${className}`}
+      id={id}
+    />
+  )
 }
 export default InfiniteScroller

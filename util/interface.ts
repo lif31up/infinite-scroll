@@ -7,8 +7,9 @@ export interface Default {
 export interface TailwindProperties {
   xl?: string
   lg?: string
-  md?: string
   sm?: string
+  sm?: string
+  base?: string
 }
 
 export interface Item {
