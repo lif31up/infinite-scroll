@@ -4,13 +4,6 @@ export interface Default {
   title?: string
 }
 
-export interface TailwindProperties {
-  xl?: string
-  lg?: string
-  sm?: string
-  base?: string
-}
-
 export interface Item {
   id: number
   title: string

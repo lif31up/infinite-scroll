@@ -1,5 +1,7 @@
 import InfiniteTable from '@/component/feature/InfiniteTable'
-import { Default, TailwindProperties } from '@/util/interface'
+import { Default } from '@/util/interface'
+import TailwindProperties from '@/util/TailwindProperties'
+import Heading from '@/component/common/Heading'
 
 function ScrollerSection({ className }: Default) {
   const style: TailwindProperties = {
@@ -8,18 +10,15 @@ function ScrollerSection({ className }: Default) {
   }
   return (
     <section className={`${style.sm} ${style.base} ${className}`}>
-      <header>
-        <h2 className="text-sm font-bold text-neutral-500 mt-8">
-          InfiniteScroller.tsx, InfiniteTable.tsx
-        </h2>
-        <h1 className="text-5xl font-bold text-gray-800">
-          무한 스크롤러와 무한 테이블
-        </h1>
-        <p className="text-base font-normal text-neutral-800 mt-2">
-          스크롤을 할 때마다 하나씩 새로운 아이템에 대한 정보가 패칭되고 이가
-          반영됩니다.
-        </p>
-      </header>
+      <Heading
+        data={{
+          filename: 'InfiniteTable.tsx, InfiniteScroller,tsx',
+          title: '무한 스크롤러',
+          desc: '리액트 후크를 이용해서 무한 스크롤러를 구현했습니다.',
+          href: 'https://github.com/lif31up/infinite-scroll',
+        }}
+        className="mt-4"
+      />
       <InfiniteTable
         src={'https://fakestoreapi.com/products'}
         className="mt-8"
