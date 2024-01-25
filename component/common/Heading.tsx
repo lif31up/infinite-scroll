@@ -18,7 +18,9 @@ function Heading({ className, data }: Heading) {
   }
   return (
     <section className={`${style.sm} ${style.base} ${className}`}>
-      <h2 className="text-sm font-bold text-neutral-700">{filename}</h2>
+      <h2 className="text-sm font-bold text-neutral-400 tracking-wider">
+        {filename}
+      </h2>
       <h1 className="text-3xl font-bold text-gray-800 mt-8">{title}</h1>
       <p className="text-sm font-medium text-neutral-900 mt-2">{desc}</p>
       <a href={href} className="sm:absolute sm:top-0 sm:right-0">
