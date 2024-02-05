@@ -3,7 +3,6 @@ import React from 'react'
 import { MutableRefObject, useEffect, useRef } from 'react'
 import { Default } from '@/util/interface'
 
-const id: string = 'infinite-scroller--0'
 interface IntersectionListener extends Default {
   indexHandler: () => void
 }
@@ -13,6 +12,7 @@ function InfiniteScroller({
 }: IntersectionListener): React.JSX.Element {
   const observerRef: MutableRefObject<IntersectionObserver | null> =
     useRef(null)
+  const id: string = 'infinite-scroller--0'
   const options: object = { root: null, rootMargin: '0px', threshold: 1 }
   useEffect((): void => {
     const target: HTMLElement | null = document.getElementById(id)
