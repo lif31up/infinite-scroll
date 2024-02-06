@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import { MutableRefObject, useEffect, useRef } from 'react'
-import { Default } from '@/utils/interface'
+import { Default } from '@/utils/propsInterface'
 
 interface IntersectionListener extends Default {
   indexHandler: () => void

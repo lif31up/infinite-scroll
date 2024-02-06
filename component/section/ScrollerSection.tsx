@@ -1,5 +1,5 @@
 import InfiniteTable from '@/component/feature/InfiniteTable'
-import { Default } from '@/utils/interface'
+import { Default } from '@/utils/propsInterface'
 import TailwindProperties from '@/styles/tailwindProperties'
 import Heading from '@/component/common/Heading'
 

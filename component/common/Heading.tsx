@@ -1,5 +1,5 @@
 import React from 'react'
-import { Default } from '@/utils/interface'
+import { Default } from '@/utils/propsInterface'
 import TailwindProperties from '@/styles/tailwindProperties'
 interface Data {
   filename: string
