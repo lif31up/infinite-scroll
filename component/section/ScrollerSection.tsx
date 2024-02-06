@@ -1,6 +1,6 @@
 import InfiniteTable from '@/component/feature/InfiniteTable'
-import { Default } from '@/util/interface'
-import TailwindProperties from '@/util/TailwindProperties'
+import { Default } from '@/utils/interface'
+import TailwindProperties from '@/styles/tailwindProperties'
 import Heading from '@/component/common/Heading'
 
 function ScrollerSection({ className }: Default) {

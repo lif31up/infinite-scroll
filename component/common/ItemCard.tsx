@@ -1,6 +1,6 @@
 import Image from 'next/image'
-import { Default, Item } from '@/util/interface'
-import TailwindProperties from '@/util/TailwindProperties'
+import { Default, Item } from '@/utils/interface'
+import TailwindProperties from '@/styles/tailwindProperties'
 
 export interface ItemCard extends Default {
   data: Item

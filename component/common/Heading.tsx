@@ -1,6 +1,6 @@
 import React from 'react'
-import { Default } from '@/util/interface'
-import TailwindProperties from '@/util/TailwindProperties'
+import { Default } from '@/utils/interface'
+import TailwindProperties from '@/styles/tailwindProperties'
 interface Data {
   filename: string
   title: string
