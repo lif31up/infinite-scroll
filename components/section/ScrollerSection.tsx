@@ -1,7 +1,7 @@
-import InfiniteTable from '@/component/feature/InfiniteTable'
+import InfiniteTable from '@/components/feature/InfiniteTable'
 import { Default } from '@/utils/propsInterface'
 import TailwindProperties from '@/styles/tailwindProperties'
-import Heading from '@/component/common/Heading'
+import Heading from '@/components/common/Heading'
 
 function ScrollerSection({ className }: Default) {
   const style: TailwindProperties = {
